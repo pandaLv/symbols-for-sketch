@@ -8,10 +8,10 @@ const bs = require('browser-sync').create()
 /**
  * Font settings
  */
-const fontName = 'symbols' // set name of your symbol font
-const className = 's' // set class name in your CSS
+const fontName = 'se-icon' // set name of your symbol font
+const className = 'se-icon' // set class name in your CSS
 const template = 'fontawesome-style' // or 'foundation-style'
-const skethcFileName = 'symbol-font-14px.sketch' // or 'symbol-font-16px.sketch'
+const sketchFileName = 'sketch/*.sketch' //
 
 /**
  * Recommended to get consistent builds when watching files
@@ -20,7 +20,7 @@ const skethcFileName = 'symbol-font-14px.sketch' // or 'symbol-font-16px.sketch'
 const timestamp = Math.round(Date.now() / 1000)
 
 gulp.task('symbols', () =>
-  gulp.src(skethcFileName)
+  gulp.src(sketchFileName)
     .pipe(sketch({
       export: 'artboards',
       formats: 'svg'
@@ -59,7 +59,7 @@ gulp.task('watch', ['symbols'], () => {
     startPath: '/sample.html',
     middleware: cacheControl
   })
-  gulp.watch('*.sketch', ['symbols'])
+  gulp.watch('sketch/*.sketch', ['symbols'])
 })
 
 /**
